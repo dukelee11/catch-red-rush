@@ -1,0 +1,35 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main   # run on pushes to main (change if needed)
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: |
+          npm run build
+          # create SPA fallback for GitHub Pages
+          cp dist/index.html dist/404.html
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages            # the branch the action should deploy to
+          folder: dist                # folder to deploy
+          token: ${{ secrets.GITHUB_TOKEN }}
