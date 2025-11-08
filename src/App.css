@@ -40,3 +40,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.game-circle, .game-grid button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
