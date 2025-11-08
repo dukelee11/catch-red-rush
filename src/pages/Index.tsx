@@ -10,7 +10,7 @@ interface Circle {
   isClicked: boolean;
 }
 
-const ROUND_TIMES = [10, 7, 5, 4, 3, 2, 1];
+const ROUND_TIMES = [10, 7, 5, 3];
 const COLORS = ["blue", "green", "yellow", "orange", "purple"];
 
 const generateCircles = (): Circle[] => {
@@ -127,7 +127,7 @@ const Index = () => {
             <div className="space-y-4">
               <p className="text-xl text-foreground">Ready for the challenge?</p>
               <p className="text-muted-foreground">
-                You'll have {ROUND_TIMES.join(", ")} seconds across 7 rounds
+                You'll have {ROUND_TIMES.join(", ")} seconds across {ROUND_TIMES.length} rounds
               </p>
             </div>
             <Button 
@@ -155,7 +155,7 @@ const Index = () => {
               </h2>
               <p className="text-xl text-muted-foreground">
                 {gameState === "won" 
-                  ? "You completed all 7 rounds!"
+                  ? `You completed all ${ROUND_TIMES.length} rounds!`
                   : `You reached round ${currentRound + 1} of ${ROUND_TIMES.length}`
                 }
               </p>
