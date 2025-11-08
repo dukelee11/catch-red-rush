@@ -1,5 +1,10 @@
 name: Build and deploy to GitHub Pages
 
+# Allow the job to push to the repo
+permissions:
+  contents: write   # allow pushing files/branches
+  pages: write      # optional, useful if you interact with Pages API
+
 on:
   push:
     branches:
